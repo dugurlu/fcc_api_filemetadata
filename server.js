@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/upload", upload.single('file'), (req, res) => {
+  // don't keep uploaded files around, we just need the file size
   fs.unlink(req.file.path, (err) => {
     if (err) res.json(err)
     res.json({'size': req.file.size})
